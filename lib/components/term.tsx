@@ -6,6 +6,7 @@ import {SearchAddon} from 'xterm-addon-search';
 import {WebglAddon} from 'xterm-addon-webgl';
 import {LigaturesAddon} from 'xterm-addon-ligatures';
 import {Unicode11Addon} from 'xterm-addon-unicode11';
+import {SerializeAddon} from 'xterm-addon-serialize';
 import {clipboard, shell} from 'electron';
 import Color from 'color';
 import terms from '../terms';
@@ -93,6 +94,7 @@ export default class Term extends React.PureComponent<TermProps> {
   term!: Terminal;
   resizeObserver!: ResizeObserver;
   resizeTimeout!: NodeJS.Timeout;
+  serializeAddon: SerializeAddon;
   constructor(props: TermProps) {
     super(props);
     props.ref_(props.uid, this);
@@ -103,6 +105,7 @@ export default class Term extends React.PureComponent<TermProps> {
     this.termDefaultBellSound = null;
     this.fitAddon = new FitAddon();
     this.searchAddon = new SearchAddon();
+    this.serializeAddon = new SerializeAddon();
   }
 
   // The main process shows this in the About dialog
@@ -157,6 +160,7 @@ export default class Term extends React.PureComponent<TermProps> {
       this.term.attachCustomKeyEventHandler(this.keyboardHandler);
       this.term.loadAddon(this.fitAddon);
       this.term.loadAddon(this.searchAddon);
+      this.term.loadAddon(this.serializeAddon);
       this.term.loadAddon(
         new WebLinksAddon(
           (event: MouseEvent | undefined, uri: string) => {
@@ -423,6 +427,10 @@ export default class Term extends React.PureComponent<TermProps> {
     });
   }
 
+  private onExport = () => {
+    console.log(this.serializeAddon.serialize());
+  };
+
   render() {
     return (
       <div
@@ -430,6 +438,16 @@ export default class Term extends React.PureComponent<TermProps> {
         style={{padding: this.props.padding}}
         onMouseUp={this.onMouseUp}
       >
+        <button
+          style={{
+            position: 'fixed',
+            right: '5px',
+            top: '25px'
+          }}
+          onClick={this.onExport}
+        >
+          Export
+        </button>
         {this.props.customChildrenBefore}
         <div ref={this.onTermWrapperRef} className="term_fit term_wrapper" />
         {this.props.customChildren}

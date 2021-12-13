@@ -7816,6 +7816,11 @@ xterm-addon-search@^0.8.1:
   resolved "https://registry.npmjs.org/xterm-addon-search/-/xterm-addon-search-0.8.1.tgz#dfc557e9bcf5fd8ed96292c0d271aa865bc545d5"
   integrity sha512-OtOaC9gxD2Q4ZnjZrCSRZmKLwwUjXX3gP7mIzq8Rs50317DGRDqgTLuHTYv/Nx/LvI5ceVFRYCxK36Ixs1nXNw==
 
+xterm-addon-serialize@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.npmjs.org/xterm-addon-serialize/-/xterm-addon-serialize-0.6.1.tgz#509335afee1367628dc685b822a1055b1213de83"
+  integrity sha512-dKscxAaNU6+cWEpuLrUGEn/IjrRvhdaVbDyJlIN1uQYGTi8HOgoGIoy6D5WtPabl2/CJ0W4OwlOQaUotCktXYA==
+
 xterm-addon-unicode11@^0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/xterm-addon-unicode11/-/xterm-addon-unicode11-0.3.0.tgz#e4435c3c91a5294a7eb8b79c380acbb28a659463"
